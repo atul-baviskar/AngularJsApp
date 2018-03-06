@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+    .sky {
+        color: white;
+        background-color: lightblue;
+        padding: 20px;
+        font-family: "Courier New";
+    }
+
+    .tomato {
+        background-color: coral;
+        padding: 40px;
+        font-family: Verdana;
+    }
+    .d {
+        background-color: yellow;
+        padding: 40px;
+        font-family: Verdana;
+    }
+</style>
+<body ng-app="">
+
+    <p>Choose a class:</p>
+
+    <select ng-model="home">
+        <option value="sky">Sky</option>
+        <option value="tomato">Tomato</option>
+    </select>
+
+    <div ng-class="home">
+        <h1>Welcome Home!</h1>
+        <p>I like it!</p>
+    </div>
+    <input type="text" ng-model="textType">
+
+    <!-- the class will be whatever is typed into the input box above -->
+    <div ng-class="textType">Look! I'm Words!
+</body>
+</html>

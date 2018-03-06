@@ -1,0 +1,130 @@
+
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+
+         function setRed(x)
+         {   
+             //   alert(x);
+             
+                var color=document.getElementById(x).value;  
+                                
+                if(color=="red")
+                {
+                document.body.style.backgroundColor = color; 
+                }
+                if(color=="yellow")
+                {
+                document.body.style.backgroundColor = color; 
+                }
+                if(color=="black")
+                {
+                document.body.style.backgroundColor = color; 
+                }
+         }
+       
+ </script>
+
+
+ 
+
+
+
+<script>
+
+                 $(document).ready(function(){                
+                 
+               
+ 
+                 $("#addbtn").click(function(){
+                
+                 var itemExists = false;
+
+                 var newRow = $("<tr>");
+                 var cols = "";
+                 cols += '<td>'+$("#uname").val()+'</td>';         
+                 cols += '<td>'+$("#lname").val()+'</td>';
+                 cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+         
+                  localStorage.setItem('name', uname);         
+                  localStorage.setItem('lname',lname);   
+                $("#tab tr td").each(function() {
+                 
+                        if ($(this).text() == $("#uname").val()) {
+                        itemExists = true;
+                        alert('Item already exists');
+                   }
+               });
+
+              if(!itemExists && $("#uname").val()!="")
+              {
+                     newRow.append(cols);
+                     $('table').append(newRow);
+                  
+              } 
+              else
+              {
+                   alert("Enter The name");
+              }
+               $('#tab').dataTable();
+        });
+
+        
+               
+             $("#tab").on("click", ".ibtnDel", function (event)
+            {
+
+                  $(this).closest("tr").remove();
+  
+          });
+
+});
+</script>
+
+</head>
+<body>
+<img src="enzigma.png" class="img-rounded" alt="Cinque Terre">
+<h1 class="bg-success">Trainig Task</h1>
+<div class="table-responsive">
+<form>
+
+First Name: <input id="uname" type="text" value=""/>
+
+Last name: <input id="lname" type="text" value=""/>
+
+<input id="addbtn" type="button" value="Add"/> </td>
+</form>
+<table border="2" id="tab"  class="table">
+ <thead>
+      <tr colspan=2>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Action</th>      
+      </tr>
+</thead>
+<tbody>
+ <tr>
+       <td>Demo</td>
+             <td>Demo</td>
+                     <td>Delete</td>
+</tr>
+</tbody>
+
+       
+</table>
+<input type="button" id="red" value="red" onclick="setRed(id)" class="btn btn-danger">
+<input type="button" id="yellow" value="yellow" onclick="setRed(id)" class="btn btn-warning">
+<input type="button" id="black" value="black" onclick="setRed(id)" class="btn btn-info">
+</form>
+
+</div>
+</body>
+	</html>

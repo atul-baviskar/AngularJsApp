@@ -1,0 +1,61 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+        var ngApp = angular.module("ngApp", []);
+
+        ngApp.controller("myController", ['$scope', function ($scope) {
+
+            $scope.emp1 = [{ col: 'Cname' }, { col: 'street' }];
+            $scope.emp2 = [{ col: 'Sname' }, { col: 'lname' }];
+            $scope.emp3 = [{ col: 'Ename' }, { col: 'salary' }];
+            $scope.emp4 = [{ col: 'Tname' }, { col: 'mobile' }, { col: 'email' }];
+
+
+            //customers
+            $scope.customers = [{ Cname: 'David', street: '1234 Anywhere St.' }, { name: 'Tina', street: '1800 Crest St.' }, { name: 'Michelle', street: '890 Main St.' }];
+            //student
+            $scope.student = [{ Sname: 'atul', lname: 'baviskr' }, { Sname: 'Tina', lname: 'Patil' }];
+
+            //employee
+            $scope.employee = [{ Ename: 'rohita', salary: '5000' }, { Ename: 'Tina', salary: '2500' }];
+
+            //Teacher
+            $scope.Teacher = [{ Tname: 'rohita', mobile: '9898755483', email: 'a@gmail.com' }, { Tname: 'Tina', salary: '9879344042', email: 'b@gmail.com' }];
+
+        }]);
+
+        ngApp.directive("myDirective", function () {
+            return {
+                scope: {
+                    emp: '=',
+                    data: '='
+                },
+                template: '<table border=2><thead><tr ><th ng-repeat="prop in emp">{{prop.col}}</th></tr></thead><tbody><tr ng-repeat="detail in data"><td>{{detail}}</td></tr></tbody></table>'
+
+            };
+
+        });
+
+    </script>
+</head>
+<body ng-app="ngApp" ng-controller="myController">
+    <div>
+        <div my-Directive col="emp1" data="customers"></div>
+        <div my-Directive col="emp2" data="student" style="margin-top:100px"></div>
+        <div my-Directive col="emp3" data="employee" style="margin-top:100px"></div>
+        <div my-Directive col="emp4" data="Teacher" style="margin-top:100px"></div>
+    </div>
+    <!--<div style="background-color:brown;margin-top:100px">
+        <div my-Directive emp="{{emp.col1}}"></div>
+    </div>
+
+    <div style="background-color:aqua;margin-top:100px">
+        <div my-Directive emp="{{emp.col3}}"></div>
+    </div>-->
+</body>
+</html>

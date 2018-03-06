@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="Vendor_js/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script src="Scripts/angular-local-storage.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+    <script>
+        var app = angular.module("CustRegistrationApp", ["ngStorage"]);
+        app.controller("myController", ['$scope', '$localStorage', function ($scope, $localStorage) {
+            var listOfData = [];
+            $scope.displayData = [];
+            $scope.displayFields = [{ lable: 'First Name', type: 'text', apiname: 'FirstName', placeholder: 'Enter Name' }, { lable: 'Last Name', type: 'text', apiname: 'LastName', placeholder: 'Enter Last Name' }, { lable: 'Email', type: 'Email', apiname: 'Email', placeholder: 'Enter Email' }, { lable: 'User Name', type: 'text', apiname: 'UserName', placeholder: 'Enter User Name' }, { lable: 'Password', type: 'password', apiname: 'password', placeholder: 'Enter Password' }];
+            $scope.formButton = { lable: 'Submit', type: 'button', value: 'Submit' };
+            $scope.showFormData = function (obj) {
+                $localStorage.userData = obj;
+                $scope.displayData.push($localStorage.userData);
+                $('#myModal').modal('hide');
+            }
+        }]);
+        app.directive("myForm", function () {
+            return {
+                scope: {
+                    displayFields: '=',
+                    action: '&',
+                    formButton: '=',
+                    displayData: '='
+                },
+                templateUrl: 'CustomFormTemaplate.html',
+                controller: function ($scope) {
+                    $scope.obj = {};
+                    $scope.save = function () {
+                        $scope.action({ obj: $scope.obj });
+                    }
+                    $scope.ClearData = function () {
+
+                        $scope.obj = null;
+                        $scope.obj = {};
+                        $("#myModal").modal('show');
+                    }
+                }
+            };
+        });
+    </script>
+</head>
+<body ng-app="CustRegistrationApp" ng-controller="myController">
+    <h1>Registration Form:</h1>
+    <my-form display-fields="displayFields" action="showFormData(obj)" formButton="formButton" display-data="displayData"></my-form>
+</body>
+</html>

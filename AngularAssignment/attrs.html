@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+
+        var app = angular.module("app", []);
+        app.directive('myDirective', function () {
+            return {
+                link: function (scope, element, attrs) {
+                    //convert the attributes to object and get its properties
+                    var attributes = scope.$eval(attrs.myDirective);
+                    console.log(attributes);
+                    console.log('id:' + attributes.id);
+                    console.log('id:' + attributes.name);
+                    scope.id = attributes.id;
+                    scope.name = attributes.name;
+                }
+            };
+        });
+    </script>
+</head>
+<body ng-app="app">
+    <div my-directive="{id:123,name:'teo',salary:1000,color:red}"></div>
+    <div>{{id}}--{{name}}</div>
+</body>
+
+</html>

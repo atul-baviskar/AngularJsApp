@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+ 
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+        var myApp = angular.module('myApp', []);
+
+   
+        function MyCtrl($scope) {
+            console.log("ctrl scope" + $scope);
+            $scope.data = {}
+            console.log("data" + $scope.data);
+            $scope.showFrom = function (message) {
+                console.log('show from' + message.hasOwnProperty('from'));
+                return message.hasOwnProperty('from')
+
+            }
+            $scope.showCreatedBy = function (message) {
+                console.log('showCreatedBy' + message.hasOwnProperty('createdBy'));
+                return message.hasOwnProperty('createdBy')
+            }
+            $scope.showTo = function (message) {
+                alert('showTo' + message.hasOwnProperty('to'));
+                return message.hasOwnProperty('to')
+            }
+        }
+    </script>
+</head>
+<body>
+    <div ng-controller="MyCtrl">
+        <div ng-repeat="message in data.messages" ng-class="message.type">
+            <hr>
+            <div ng-if="showFrom(message)">
+                <div>From: {{message.from.name}}</div>
+            </div>
+            <div ng-if="showCreatedBy(message)">
+                <div>Created by: {{message.createdBy.name}}</div>
+            </div>
+            <div ng-if="showTo(message)">
+                <div>To: {{message.to.name}}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

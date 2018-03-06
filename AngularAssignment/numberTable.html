@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+        var ngApp = angular.module('ngApp', []);
+        ngApp.controller('myController', function ($scope) {
+            $scope.dis=function(x,y){
+            
+                $scope.num1 = x;
+                $scope.num2 = y;
+            };
+
+        });
+
+        $scope.AddEmp = funtion()
+        {
+            $scope.employee.push({ 'firstName': $scope.firstName, 'LastName': $scope.LastName });
+            $scope.firstName = '';
+            $scope.LastName = '';
+        };
+    </script>
+</head>
+<body ng-app="ngApp">
+    <form ng-controller="myController">
+
+        Number 1:
+        <input type="text" ng-model="num1">
+        number 2:
+        <input type="text" ng-model="num2" />
+        <input type="button" onclick="dis(num1, num2)">
+    </form>         
+        <table ng-repeat>
+            <tr>
+                <td>Name</td>
+                <td>Last Name</td>
+            </tr>
+            <tr>
+                <td>{{num1}}</td>
+                <td>{{num2}}</td>
+
+            </tr>
+        </table>
+            </li>
+        </ul>
+
+  
+</body>
+</html>

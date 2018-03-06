@@ -1,0 +1,149 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function setRed(x) {
+            var color = document.getElementById(x).value;
+
+            if (color == "red") {
+                document.body.style.backgroundColor = color;
+            }
+            if (color == "yellow") {
+                document.body.style.backgroundColor = color;
+            }
+            if (color == "black") {
+                document.body.style.backgroundColor = color;
+            }
+        }
+        var flag = 0;
+        var TableData = new Array();
+        $(document).ready(function () {
+            console.log("ready" + flag);
+            var trEle = "";
+            $("#addbtn").click(function (ele) {
+                if (flag == 1) {
+
+                    var name = $("#uname").val();
+                    var lname = $("#lname").val();
+                    $(trEle).closest('tr').children()[0].textContent = name;
+                    $(trEle).closest('tr').children()[1].textContent = lname;
+                    trEle = "";
+                    flag = 0;
+                    $("#uname").val("");
+                    $("#lname").val("");
+                }
+                else {
+
+                    flag = 0;
+                    var itemExists = false;
+                    var name = $("#uname").val().trim();
+                    var lname = $("#lname").val().trim();
+                    if (name == "" && lname == "") {
+                        console.log("Not Insert");
+                    }
+                    else {
+                        var newRow = $("<tr>");
+                        var cols = "";
+                        cols += '<td>' + $("#uname").val() + '</td>';
+                        cols += '<td>' + $("#lname").val() + '</td>';
+                        cols += '<td><button class="ibtnDel btn btn-danger btn-xs" id="del"><span class="glyphicon glyphicon-trash"></span></button><button class="ibtnEdit btn btn-primary btn-xs"   id="edit"> <span class="glyphicon glyphicon-pencil"></span></button></td>';
+                        $("#tab tr td").each(function () {
+                            if ($(this).text() == $("#uname").val()) {
+                                itemExists = true;
+                                alert('Item already exists');
+                            }
+                        });
+
+                        if (!itemExists && $("#uname").val() != "") {
+                            newRow.append(cols);
+                            $('#tab').append(newRow);
+                            $("#uname").val("");
+                            $("#lname").val("");
+                            $('#myModal').modal('toggle');
+                        }
+                        else {
+                            alert("Enter The name");
+                        }
+                    }
+
+                }
+            });
+
+            $("#tab").on("click", ".ibtnDel", function (event) {
+
+
+                $(this).closest("tr").remove();
+
+            });
+            $("#tab").on("click", ".ibtnEdit", function (event) {
+                flag = 1;
+                $('#myModal').modal("show");
+                $("#uname").val($(this).closest('tr').children()[0].textContent);
+                $("#lname").val($(this).closest('tr').children()[1].textContent);
+                trEle = this;
+
+            });
+
+            $('table').DataTable();
+        });
+    </script>
+</head>
+<body class="container">
+    <img src="enzigma.png" class="img-rounded" alt="Cinque Terre">
+    <h1 class="bg-success">Training Task</h1>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Record</button>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Record</h4>
+                </div>
+
+                <form>
+
+                    <div class="modal-body">
+                        First Name: <input id="uname" type="text" value="" />
+                        Last name: <input id="lname" type="text" value="" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <input id="addbtn" type="button" value="Add" class="btn btn-primary pull-left" />
+                        <input id="addcancel" type="button" value="cancel" class="btn btn-primary pull-right" class="btn close" data-dismiss="modal" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <table border="2" id="tab" class="table">
+        <thead>
+            <tr colspan=2>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="roleListTable">
+            <tr>
+                <td>Demo</td>
+                <td>Demo</td>
+                <td>Delete</td>
+            </tr>
+        </tbody>
+
+
+    </table>
+    <a href="demoTest.html">  <input type="button" id="red" value="red" onclick="setRed(id)" class="btn btn-danger"></a>
+    <a href="expression.html">  <input type="button" id="yellow" value="yellow" onclick="setRed(id)" class="btn btn-warning"></a>
+    <a href="numberTable.html">  <input type="button" id="black" value="black" onclick="setRed(id)" class="btn btn-info"></a>
+    </form>
+    </div>
+</body>
+</html>

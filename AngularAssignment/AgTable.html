@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Vendor_js/angular.js"></script>
+    <script>
+        var ngApp = angular.module('ngMyApp', []);
+        ngApp.controller('myController', function ($scope) {
+            $scope.employee = [{
+                'Name': 'ATul',
+                'lName': 'Baviskar'
+            },
+                 {
+                     'Name': 'ATul',
+                     'lName': 'Baviskar'
+                 }, ];
+
+
+
+            $scope.addRow = function () {
+                $scope.employee.push({ 'Name': $scope.firstName, 'lName': $scope.LastName });
+
+                $scope.Name = "";
+                $scope.lName = "";
+            };
+        });
+
+        var ngApp1 = angular.module('ngApp11', []);
+        ngApp1.controller('myController1', function ($scope) {
+            $scope.msg = "Hiii Bind";
+        });
+
+        var dvFirst = document.getElementById('App1');
+        angular.element(document).ready(function () {
+
+            angular.bootstrap(dvFirst, ['ngApp11']);
+        });
+
+        //var ngApp1 = angular.module('ngApp11', []);
+        //ngApp1.controller('myController1', function ($scope) {
+        //    $scope.msg = "Hiii Bind";
+        //    angular.bootstrap(document.getElementById("App1"), ['myController1']);
+        //});
+        
+    </script>
+    
+</head>
+<body>
+    <div ng-app="ngMyApp" ng-controller="myController">
+    <form ng-submit="addRow()">
+        First Name:<input type="text" ng-model="firstName">
+        Last Name:<input type="text" ng-model="LastName">
+        <input type="submit" value="submit">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>LastName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="emp in employee">
+                <td>{{emp.Name}}</td>
+                <td>{{emp.lName}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div ng-app="ngApp11" ng-controller="myController1" id="App1">
+        {{msg}}
+    </div>
+
+
+</body>
+</html>

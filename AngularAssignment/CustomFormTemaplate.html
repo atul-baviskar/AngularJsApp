@@ -1,0 +1,39 @@
+﻿<button type="button" class="btn btn-info btn-lg" data-toggle="modal" class="close" data-dismiss="modal" ng-click="ClearData()">Add Record</button>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Candidate Record</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form name="myForm" method="get">
+                <div ng-repeat="field in displayFields">
+                    <div class="col-sm-6">
+                        {{field.lable}}:<input type="{{field.type}}" name="{{field.apiname}}" ng-model="obj[field.apiname]" placeholder="{{field.placeholder}}" class="form-control" value="{{field.value}}" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<input type="submit" value="submit" class="btn btn-primary pull-left" ng-click="action({obj:obj})" style="margin-top:20px;margin-left:20px;margin-right:10px" />-->
+                    <input type="submit" value="submit" class="btn btn-primary pull-left" ng-click="save()" style="margin-top:20px;margin-left:20px;margin-right:10px" />
+                    <input id="addcancel" type="button" value="cancel" class="btn btn-primary pull-right" class="btn close" data-dismiss="modal" style="margin-top:20px" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<table border="2" id="tab" class="table">
+    <thead>
+        <tr colspan=2>
+            <th ng-repeat="record in displayFields">{{record.apiname}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in displayData ">
+            <td>{{item.FirstName}}</td>
+            <td>{{item.LastName}}</td>
+            <td>{{item.Email}}</td>
+            <td>{{item.UserName}}</td>
+            <td>{{item.password}}</td>
+        </tr>
+    </tbody>
+</table>

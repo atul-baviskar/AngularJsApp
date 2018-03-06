@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+        var app = angular.module("app", []);
+        app.controller("CustomDirectiveController", function ($scope) {
+            $scope.username = "bhushan";
+            $scope.address = "surat";
+        });
+
+        app.directive('myCustomUrl', function () {
+            return {
+                templateUrl: 'testurl.html'
+            };
+        });
+
+    </script>
+</head>
+<body>
+    <div ng-app="app" ng-controller="CustomDirectiveController">
+        <h2>Custom directive tempalte Url</h2>
+        <div my-custom-url></div>
+    </div>
+
+</body>
+</html>

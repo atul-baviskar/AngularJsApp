@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        .ng-invalid {
+            border: 1px solid red;
+        }
+
+        .ng-scope {
+            border: 1px solid red;
+            margin: 14px;
+        }
+    </style>
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+
+        var app = angular.module('transclude', []);
+
+
+        app.directive('pane', function () {
+            return {
+                restrict: 'E',
+                transclude: true,
+                scope: { title: '@' },
+                template: '<div style="border: 1px solid black;">' +
+                   '<div style="background-color: gray">{{title}}</div>' +
+                   '<div ng-transclude><a ng-click="$parent.showScope($event)">show scope</a></div>' +
+                   '</div>',
+                link: function (scope, element) {
+                    scope.isolate = "I'm the isolate scope";
+                }
+            };
+
+        });
+        app.controller("Ctrl", function ($scope, $rootScope) {
+            $scope.title = 'My Title';
+            $scope.text = 'This is the text of the pane element';
+            $rootScope.showScope = function (e) {
+                console.log(angular.element(e.srcElement).scope());
+            }
+
+        });
+
+       
+
+
+    </script>
+</head>
+<body>
+
+    <div ng-app="transclude">
+        <div ng-controller="Ctrl">
+            <input ng-model="title"><br>
+            <textarea ng-model="text"></textarea> <br />
+            <pane title="{{title}}">{{text}}</pane>
+        </div>
+    </div>
+
+</body>
+</html>

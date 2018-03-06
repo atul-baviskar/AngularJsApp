@@ -1,0 +1,22 @@
+﻿<html>
+<head>
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+
+        var app = angular.module("ngrepeatApp", []);
+
+        app.controller("ngrepeatCtrl", function ($scope) {
+            $scope.employee_names = [{ name: 'atul', gender: 'male' }, { name: 'bhushan', gender: 'male' }, { name: 'sai', gender: 'male' }, { name: 'ram', gender: 'male' }];
+        });
+
+    </script>
+</head>
+<body ng-app="ngrepeatApp" ng-controller="ngrepeatCtrl">
+
+    <div ng-repeat="step in employee_names ">
+             {{step.name}}
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="vendor_js/angular.min.js"></script>
+    <script>
+        var studentApp = angular.module('studentApp', []);
+
+        studentApp.controller("studController", function ($scope, $rootScope) {
+            $scope.$on('eventName', function (data) {
+                $rootScope.roottest = "This is routeScope test";
+                $rootScope.scopetest = "This is scope test";
+                $rootScope.scopetest1 = data["targetScope"].scopetest1;
+                $scope.scopetest = "This is scope test";
+                $scope.scopetest1 = data["targetScope"].scopetest1;
+            });
+        });
+
+        studentApp.controller("studController1", function ($scope) {
+
+
+            $scope.handleClick = function () {
+                $scope.scopetest1 = "This is scope test1";
+                $scope.$emit('eventName', $scope.scopetest1);
+
+
+            };
+
+        });
+
+
+    </script>
+</head>
+<body>
+    <div ng-app="studentApp">
+        {{roottest}}-{{scopetest}} - {{scopetest1}}
+
+
+        <div ng-controller="studController">
+            {{roottest}} - {{scopetest}} - {{scopetest1}}
+
+            <div ng-controller="studController1" data-ng-init="handleClick()">
+                {{roottest}} - {{scopetest}} - {{scopetest1}}
+            </div>
+        </div>
+    </div>
+</body>

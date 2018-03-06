@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+        var helloApp = angular.module("ngApp", []);
+        helloApp.controller("myController", function ($scope) {
+            $scope.emp = { firstName: 'Atul', lastName: 'Baviskar', Gender: 'Male' };
+        });
+    </script>
+</head>
+<body ng-app>
+    <!--<h1 ng-controller="myController">
+        {{emp.firstName+" "+emp.lastName+"  "+emp.Gender}}
+    </h1>-->
+    <form>
+        <input type="text" ng-model="Name" />
+    </form>
+    {{Name}}
+</body>
+</html>

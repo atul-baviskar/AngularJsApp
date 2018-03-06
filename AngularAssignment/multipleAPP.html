@@ -1,0 +1,44 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="vendor_js/angular.min.js"></script>
+    <script>
+        var student1 = angular.module('studentApp', []);
+        student1.controller("studController1", function ($scope) {
+            $scope.scopetest1 = "This is scope test1";
+        });
+
+        var student2 = angular.module('studentApp1', []);
+        student2.controller("studController2", function ($scope) {
+            $scope.scopetest2 = "This is scope test2";
+        });
+
+        //var student3 = angular.module('studentApp2', []);
+        //student3.controller("studController3", function ($scope) {
+        //    $scope.scopetest3 = "This is scope test3";
+        //});
+
+        angular.bootstrap(document.getElementById("App1"), ['studentApp1']);
+
+    </script>
+</head>
+<body>
+    <div ng-app="studentApp">
+        <h1 ng-controller="studController1">
+            {{scopetest1}}
+        </h1>
+    </div>
+    <div ng-app="studentApp1" ng-controller="studController2" id="App1">
+
+        {{scopetest2}}
+
+    </div>
+    <!--<div ng-app="studentApp2" id="App2" ng-controller="studController3">
+
+   
+
+    </div>-->
+
+
+</body>

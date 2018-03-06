@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        let script = document.createElement('script');
+
+        // can load any script, from any domain
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"
+        document.head.append(script);
+
+        script.onload = function() {
+           
+            var myElement = document.getElementById("#dr");
+            document.getElementById("demo").innerHTML =
+            "The text from the intro paragraph is " + myElement.innerHTML;
+            alert(myElement);
+        };
+        $(document).ready(function () {
+            alert("alert");
+            $("#hide").click(function () {
+                $("p").hide();
+            });
+        });
+
+        $(document).ready(function () {
+            alert("2");
+            $("#show").click(function () {
+                $("p").show();
+            });
+        });
+      
+    //    function fun1() {
+           
+    //alert("loadpage");
+    //var myElement = document.getElementById("#dr");
+    //document.getElementById("demo").innerHTML =
+    //"The text from the intro paragraph is " + myElement.innerHTML;
+    //alert(myElement);
+    //};
+    </script>
+
+</head>
+<body onload="fun1()">
+
+    <p>If you click on the "Hide" button, I will disappear.</p>
+
+    <button id="hide">Hide</button>
+    <button id="show">Hide</button>
+    <div id="dr">hii</div>
+    <h1 id="demo"></h1>
+</body>
+</html>

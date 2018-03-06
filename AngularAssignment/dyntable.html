@@ -1,0 +1,68 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+        var ngApp = angular.module("ngApp", []);
+
+        ngApp.controller("myController", ['$scope', function ($scope) {
+
+            $scope.emp1 = [{ col: 'Cname' }, { col: 'street' }, { col: 'Phone_No' }];
+            $scope.emp2 = [{ col: 'Sname' }, { col: 'lname' }];
+            $scope.emp3 = [{ col: 'Ename' }, { col: 'salary' }];
+            $scope.emp4 = [{ col: 'Tname' }, { col: 'mobile' }, { col: 'email' }];
+
+
+            //customers
+            $scope.customers = [{ name: 'David', street: '1234 Anywhere St.', Phone_No: '8866582539' }, { name: 'Tina', street: '1800 Crest St.', Phone_No: '9898793442' }, { name: 'Michelle', street: '890 Main St.', Phone_No: '9512468313' }];
+            //student
+            $scope.student = [{ Sname: 'atul', lname: 'baviskr' }, { Sname: 'Tina', lname: 'Patil' }];
+
+            ////employee
+            $scope.employee = [{ Ename: 'rohita', salary: '5000' }, { Ename: 'Tina', salary: '2500' }];
+
+            ////Teacher
+            $scope.Teacher = [{ Tname: 'rohita', mobile: '9898755483', email: 'a@gmail.com' }, { Tname: 'Tina', salary: '9879344042', email: 'b@gmail.com' }];
+
+        }]);
+
+        ngApp.directive("myDirective", function () {
+            return {
+
+                scope: {
+                    emp: '=',
+                    data: '=',
+                    stud: '=',
+                    studdata: '=',
+                    em: '=',
+                    emdata: '=',
+                    teach: '=',
+                    teachdata: '='
+                },
+                template: '<table border=1><tr ><th ng-repeat="prop in emp">{{prop.col}}</th></tr><tr ng-repeat="prop1 in data"><td>{{ prop1.name }}</td><td>{{ prop1.street }}</td><td>{{ prop1.Phone_No }}</td></tr></table> <table border=1><tr ><th ng-repeat="prop in stud">{{prop.col}}</th></tr><tr ng-repeat="prop1 in studdata"><td>{{ prop1.Sname }}</td><td>{{ prop1.lname }}</td></tr></table>  <table border=1><tr ><th ng-repeat="prop in em">{{prop.col}}</th></tr><tr ng-repeat="prop1 in emdata"><td>{{ prop1.Ename }}</td><td>{{ prop1.salary }}</td></tr></table> <table border=1><tr ><th ng-repeat="prop in teach">{{prop.col}}</th></tr><tr ng-repeat="prop1 in teachdata"><td>{{ prop1.Tname }}</td><td>{{ prop1.mobile }}</td> <td>{{ prop1.email }}</td></tr></table>'
+            };
+
+        });
+
+    </script>
+</head>
+<body ng-app="ngApp" ng-controller="myController">
+    <div>
+        <!--<div my-Directive emp="emp1"></div>-->
+        <div my-Directive emp="emp1" data="customers"></div>
+        <div my-Directive stud="emp2" studdata="student" style="margin-top:100px"></div>
+        <div my-Directive em="emp3" emdata="employee" style="margin-top:100px"></div>
+        <div my-Directive teach="emp4" teachdata="Teacher" style="margin-top:100px"></div>
+    </div>
+    <!--<div style="background-color:brown;margin-top:100px">
+        <div my-Directive emp="{{emp.col1}}"></div>
+    </div>
+
+    <div style="background-color:aqua;margin-top:100px">
+        <div my-Directive emp="{{emp.col3}}"></div>
+    </div>-->
+</body>
+</html>

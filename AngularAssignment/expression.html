@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Vendor_js/angular.min.js"></script>
+ 
+</head>
+<body ng-app ng-init="person =[ { firstName:'Steve', lastName :'Jobs'},{ firstName:'atul', lastName :'Jobs'}]">
+   
+        <h2 ng-repeat="obj in person">
+            {{obj.firstName+"   "+obj.lastName}}
+        </h2>
+    
+</body>
+</html>

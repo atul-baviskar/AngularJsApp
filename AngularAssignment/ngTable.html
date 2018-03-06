@@ -1,0 +1,88 @@
+﻿
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+        var app = angular.module("ngTableApp", []);
+
+        app.controller("ngTableAppCtrl", function ($scop) {
+
+            $scope.employee = [{ 'Name': 'ATul', 'lName': 'Baviskar' },
+                                 { 'Name': 'bhaushan', 'lName': 'Patil' },
+            ];
+            $scope.dis = function () {
+                alert("f");
+                $scope.employee.push({ 'Name': $scope.name, 'lName': $scope.lname });
+                $('#myModal').modal("hide");
+            }
+
+        });
+
+        app.directive('emp', function ($compile) {
+
+            var directive = {};
+
+            directive.restrict = 'E';
+
+
+            directive.template = '<tbody><tr ng-repeat="e in employee"><td>{{e.name}}</td><td>{{e.lName}}</td><tbody>';
+            
+            var linkFunction = function ($scope, element, attributes) {
+                element.append(template);
+                $compile(template)($scope);
+            }
+            directive.link = linkFunction;
+            return directive;
+        });
+
+    </script>
+</head>
+<body class="container" ng-app="ngTableApp" ng-controller="ngTableAppCtrl">
+    <img src="enzigma.png" class="img-rounded" alt="Cinque Terre">
+    <h1 class="bg-success">Training Task</h1>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Record</button>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Record</h4>
+                </div>
+
+                <form>
+
+                    <div class="modal-body">
+                        First Name: <input id="uname" type="text" value="" ng-model="name" />
+                        Last name: <input id="lname" type="text" value="" ng-model="lname" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <input id="addbtn" type="button" value="Add" class="btn btn-primary pull-left" ng-click="dis();" />
+                        <input id="addcancel" type="button" value="cancel" class="btn btn-primary pull-right" class="btn close" data-dismiss="modal" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <table border="2" id="tab" class="table">
+        <thead>
+            <tr colspan=2>
+                <th>First Name</th>
+                <th>Last Name</th>
+
+            </tr>
+        </thead>
+        
+           <emp></emp>
+     
+
+    </table>
+
+</body>
+</html>

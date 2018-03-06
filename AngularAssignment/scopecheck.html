@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Vendor_js/angular.js"></script>
+    <script>
+
+        var CounterApp = angular.module('CounterApp', []);
+        CounterApp.controller('myobj', customer);
+
+        function customer($scope, $rootScope) {
+            debugger;
+            $rootScope.counter = (($rootScope.counter || 0) + 1);
+            $scope.name = "Hello Atul";
+        }
+
+    </script>
+</head>
+<body>
+
+    <div ng-app="CounterApp">
+        {{counter}}
+        <div ng-controller="myobj">
+            {{counter}}
+            {{name}}
+
+            <div ng-controller="myobj">
+                {{counter}}
+                {{name}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

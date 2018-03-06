@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Vendor_js/angular.min.js"></script>
+    <script>
+        var ngApp = angular.module("ngApp", []);
+
+        ngApp.controller("myController", function ($scope) {
+
+            $scope.emp = { name: 'atul', lname: 'baviskar' };
+
+        });
+        ngApp.directive("myDirective", function () {
+
+            return {template:'name:{{emp.name}} last Name{{emp.lname}}'};
+        });
+
+    </script>
+</head>
+<body>
+    <myDirective></myDirective>
+
+</body>
+</html>
